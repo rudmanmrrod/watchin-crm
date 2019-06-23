@@ -29,7 +29,7 @@ CRM open source
 	python manage.py runserver
 ```
 
-### frontend
+### Frontend
 
 * Install
 
