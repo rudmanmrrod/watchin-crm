@@ -3,6 +3,8 @@ CRM open source
 
 ## Intallation
 
+### Backend
+
 * Make python virtualenv
 
 ```
@@ -25,4 +27,19 @@ CRM open source
 
 ```
 	python manage.py runserver
+```
+
+### frontend
+
+* Install
+
+```
+	cd crm-front/
+	npm install
+```
+
+* Run
+
+```
+	npm run serve
 ```
