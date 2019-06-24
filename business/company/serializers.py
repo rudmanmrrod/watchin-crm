@@ -1,3 +1,13 @@
+"""
+WatchInCRM System
+"""
+## @package business.company.serializers
+#
+# Serializer of the data of the company module
+# @author Team WatchIn
+# @date 24-06-2019
+# @version 1.0
+
 from django.db import transaction
 from rest_framework import serializers
 from .models import *
