@@ -1,5 +1,5 @@
-# WatchInCRM
-CRM open source
+# WatchInSGE
+SGE open source
 
 ## Intallation
 
