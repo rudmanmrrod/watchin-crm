@@ -34,7 +34,7 @@ SGE open source
 * Install
 
 ```
-	cd crm-front/
+	cd frontend/
 	npm install
 ```
 
