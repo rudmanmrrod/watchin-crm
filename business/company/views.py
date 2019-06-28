@@ -1,3 +1,13 @@
+"""
+WatchInCRM System
+"""
+## @package business.company.views
+#
+# View that controls the processes of the company
+# @author Team WatchIn
+# @date 24-06-2019
+# @version 1.0
+
 from rest_framework import viewsets
 from .models import *
 from .serializers import *
