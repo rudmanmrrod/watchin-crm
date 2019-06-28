@@ -1,3 +1,13 @@
+"""
+WatchInCRM System
+"""
+## @package business.company.models
+#
+# Model that builds company data models
+# @author Team WatchIn
+# @date 23-06-2019
+# @version 1.0
+
 from django.db import models
 
 class Company(models.Model):
