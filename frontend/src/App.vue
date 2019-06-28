@@ -16,22 +16,20 @@
     </v-toolbar>
 
     <v-content>
-      <HelloWorld/>
+      <router-view/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  },
-  data () {
-    return {
-      //
+  mounted(){
+    if(this.$store.state.users.user){
+      console.log("user here")
+    }
+    else{
+      this.$router.push('/login')
     }
   }
 }
