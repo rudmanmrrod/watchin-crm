@@ -1,5 +1,5 @@
 """
-WatchInCRM System
+WatchInSEG System
 """
 ## @package business.company.views
 #

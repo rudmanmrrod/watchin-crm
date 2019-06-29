@@ -1,5 +1,5 @@
 """
-WatchInCRM System
+WatchInSGE System
 """
 ## @package business.company.models
 #
