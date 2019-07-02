@@ -15,9 +15,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .routers import router
+
+from djoser.urls import (
+    authtoken, urlpatterns
+)
+from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import refresh_jwt_token
+from rest_framework_jwt.views import verify_jwt_token
+
+from base.users.urls import urlpatterns as users_urls
+
+url_djoser_users = urlpatterns + users_urls 
+
+url_djoser_users.pop(1)
+url_djoser_users.pop(8)
 
 urlpatterns = [
+  path('api/api-auth/', include('rest_framework.urls',
+         namespace='rest_framework')),
   path('admin/', admin.site.urls),
-  path('api/', include(router.urls)),
+  #: Djoser auth And User Create
+  path('api/auth/', include(url_djoser_users)),
+  #: Sorter urls 
+  path('api/utils/', include('base.utils.urls')),
+  #: Djoser JWT
+  path('api/auth/', include('djoser.urls.jwt')),
 ]

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import datetime
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -38,17 +39,24 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
+    'djoser',
     'django_filters',
+    'corsheaders',
 ]
 
 PROJECT_APPS = [
+    'base',
+    'base.utils',
     'business',
     'business.company',
+    'base.users',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -86,6 +94,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ATOMIC_REQUESTS': True, # Create transactions on each view request
     }
 }
 
@@ -132,11 +141,12 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        #'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
@@ -147,3 +157,52 @@ REST_FRAMEWORK = {
     'UNICODE_JSON': True,
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
 }
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(hours=12),
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'SLIDING_TOKEN_LIFETIME': datetime.timedelta(hours=12),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+}
+
+
+DOMAIN = os.environ.get('SITE_DOMAIN', None) #'localhost:8080' 
+# se puede cambiar por el dominio del frontend
+SITE_NAME = 'localhost'
+
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '/auth/password/reset/confirm/{uid}/{token}', # Coloque la ruta del frontend y tome el uid y el token para enviarlos como parametros
+    'ACTIVATION_URL': '/auth/activate/{uid}/{token}',
+    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
+    'SEND_ACTIVATION_EMAIL': False,
+    'SERIALIZERS': {'user_create': 'base.users.serializers.CreateUserSerializer',
+                    'user': 'djoser.serializers.UserSerializer'
+                   },
+}
+
+DATETIME_FORMAT = {
+    'DATETIME_USER': '%B, %d de %Y, %I:%M:%S %P ',
+    }
+
+EMAIL_USE_TLS = True
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'cuenta@gmail.com'
+EMAIL_HOST_PASSWORD = 'passaccount'
+EMAIL_FROM = EMAIL_HOST_USER
+
+# During production only
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# During development only
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+CORS_ORIGIN_ALLOW_ALL=True
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8080',
+    )
