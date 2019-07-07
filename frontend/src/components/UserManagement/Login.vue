@@ -5,7 +5,7 @@
         <h1>Login</h1><hr>
         <v-flex xs12>
           <v-text-field
-            v-model="user.email"
+            v-model="user.username"
             name="username"
             v-validate="'required'"
             :error-messages="errors.collect('username')"

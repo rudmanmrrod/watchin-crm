@@ -3,16 +3,8 @@
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
         <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span class="font-weight-light">Watchin SGE</span>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
     </v-toolbar>
 
     <v-content>
@@ -26,7 +18,7 @@ export default {
   name: 'App',
   mounted(){
     if(this.$store.state.users.user){
-      console.log("user here")
+      this.$router.push('/')
     }
     else{
       this.$router.push('/login')
