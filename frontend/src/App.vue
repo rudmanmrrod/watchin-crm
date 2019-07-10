@@ -32,8 +32,8 @@
         @click.stop="drawer = !drawer"
       ></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">Watchin SGE</span>
+        <span>Watchin</span>
+        <span class="font-weight-light">SGE</span>
       </v-toolbar-title>
     </v-toolbar>
 
