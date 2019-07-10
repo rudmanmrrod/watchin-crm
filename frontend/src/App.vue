@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-navigation-drawer
+      v-if="$route.name != 'login'"
       v-model="drawer"
       fixed
       clipped
@@ -26,7 +27,10 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app fixed>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon 
+        v-if="$route.name != 'login'" 
+        @click.stop="drawer = !drawer"
+      ></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase">
         <span>Vuetify</span>
         <span class="font-weight-light">Watchin SGE</span>
