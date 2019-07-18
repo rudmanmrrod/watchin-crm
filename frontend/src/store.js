@@ -11,12 +11,20 @@ export default new Vuex.Store({
     users: users
   },
   state: {
-
+    snackbar:{
+      value: false,
+      type: '',
+      text: ''
+    }
   },
   mutations: {
-
+    ['SET_MSG'] (state,payload){
+      state.snackbar = payload
+    }
   },
   actions: {
-
+    setMessage({commit},obj){
+      commit('SET_MSG',obj)
+    }
   }
 })

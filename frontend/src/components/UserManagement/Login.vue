@@ -9,8 +9,7 @@
             name="username"
             v-validate="'required'"
             :error-messages="errors.collect('username')"
-            :label="email"
-            :data-vv-as="email"
+            label="email"
           ></v-text-field>
         </v-flex>
         <v-flex xs12>
@@ -19,7 +18,7 @@
             name="password"
             v-validate="'required|min:8'"
             :error-messages="errors.collect('password')"
-            :label="password"
+            label="password"
             type="password"
           ></v-text-field>
         </v-flex>

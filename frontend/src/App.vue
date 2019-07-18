@@ -36,7 +36,13 @@
         <span class="font-weight-light">SGE</span>
       </v-toolbar-title>
     </v-toolbar>
-
+    <v-snackbar
+      v-model="$store.state.snackbar.value"
+      :color="$store.state.snackbar.type"
+      top="true"
+    >
+      {{ $store.state.snackbar.text }}
+    </v-snackbar>
     <v-content>
       <router-view/>
     </v-content>

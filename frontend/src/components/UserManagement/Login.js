@@ -18,7 +18,12 @@ export default{
               this.$router.push('/')
             })
             .catch(error => {
-              console.log(error)
+              let message = {
+                'text': error.response.data.detail,
+                'type': 'error',
+                'value':true
+              }
+              this.$store.dispatch('setMessage',message)
             })
           }
         })

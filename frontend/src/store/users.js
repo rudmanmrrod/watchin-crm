@@ -1,10 +1,11 @@
 export default{
   state: {
-    user: localStorage.getItem('user')
+    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')):null
   },
   mutations: {
     ['LOGIN'] (state,payload){
-      state.user = payload
+      localStorage.setItem('user',JSON.stringify(payload))
+      state.user = JSON.stringify(payload)
     }
   },
   actions: {
